@@ -1,0 +1,24 @@
+.nav {
+  height: 50px;
+  .nav-flex {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    .nav-flex-item {
+      text-align: center;
+      width: 20%;
+    }
+    .search {
+      width: 60%;
+    }
+  }
+}
+
+.section-title {
+  display: flex;
+  .red {
+    width: 5px;
+    height: 10px;
+    background: red;
+  }
+}
