@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eecce4b9-ba68-4b88-9000-7f3b226d6ab0" name="Default" comment="" />
+    <list default="true" id="eecce4b9-ba68-4b88-9000-7f3b226d6ab0" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/public/img/case/case1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/case/case2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/case/case3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/case/case4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/case/case5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/cooperation/logo9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/index.scss" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,17 +33,11 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/home/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="21" selection-start-column="21" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/index/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="28" lean-forward="true" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+            <state relative-caret-position="335">
+              <caret line="141" column="59" lean-forward="true" selection-start-line="141" selection-start-column="59" selection-end-line="141" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -32,8 +45,8 @@
       <file leaf-file-name="index.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/home/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+            <state relative-caret-position="4011">
+              <caret line="191" column="23" selection-start-line="191" selection-start-column="23" selection-end-line="191" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -57,7 +70,11 @@
       <find>include</find>
       <find>resolveApp</find>
       <find>paths</find>
+      <find>banner</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -107,6 +124,7 @@
     <option name="width" value="1440" />
     <option name="height" value="810" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -127,6 +145,17 @@
             <path>
               <item name="music-mobile-front" type="b2602c69:ProjectViewProjectNode" />
               <item name="music-mobile-front" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="music-mobile-front" type="b2602c69:ProjectViewProjectNode" />
+              <item name="music-mobile-front" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="music-mobile-front" type="b2602c69:ProjectViewProjectNode" />
+              <item name="music-mobile-front" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -134,20 +163,6 @@
               <item name="music-mobile-front" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="music-mobile-front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="music-mobile-front" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="music-mobile-front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="music-mobile-front" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -171,6 +186,8 @@
       <recent name="$PROJECT_DIR$/src/components/common/SectionTitle" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/img/case" />
+      <recent name="$PROJECT_DIR$/public/img/cooperation" />
       <recent name="$PROJECT_DIR$/public/img" />
       <recent name="$PROJECT_DIR$/src/assets/img" />
       <recent name="$PROJECT_DIR$/src/Components" />
@@ -199,12 +216,12 @@
       <option name="presentableId" value="Default" />
       <updated>1525417802852</updated>
       <workItem from="1525417806217" duration="2702000" />
-      <workItem from="1525423042688" duration="25253000" />
+      <workItem from="1525423042688" duration="49796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27955000" />
+    <option name="totallyTimeSpent" value="52498000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="0" />
@@ -213,10 +230,10 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32959327" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32959327" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
@@ -389,13 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/paths.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/common/SectionTitle.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -450,17 +460,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/block.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="245" column="15" selection-start-line="245" selection-start-column="14" selection-end-line="245" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/paths.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/env.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/home/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
+        <state relative-caret-position="335">
+          <caret line="141" column="59" lean-forward="true" selection-start-line="141" selection-start-column="59" selection-end-line="141" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/home/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        <state relative-caret-position="4011">
+          <caret line="191" column="23" selection-start-line="191" selection-start-column="23" selection-end-line="191" selection-end-column="23" />
         </state>
       </provider>
     </entry>
