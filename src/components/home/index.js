@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.scss';
 import { Carousel, SearchBar } from 'antd-mobile';
+import { Link } from 'react-router-dom';
 
 const SectionTitle = (props) => (
     <div className="section-title">
@@ -9,24 +10,129 @@ const SectionTitle = (props) => (
     </div>
 );
 
+const MenuData = [
+    {
+        item: 'meun-1',
+        nav: [
+            {
+                icon: '/img/menu/shouye.png',
+                text: '首页'
+            },
+            {
+                icon: '/img/menu/yinyue.png',
+                text: '音乐查找'
+            },
+            {
+                icon: '/img/menu/xiaoshou.png',
+                text: '销售排行榜'
+            },
+            {
+                icon: '/img/menu/dingzhi.png',
+                text: '定制配乐'
+            }
+        ]
+    },
+    {
+        item: 'meun-2',
+        nav: [
+            {
+                icon: '/img/menu/shouquan.png',
+                text: '授权证书说明'
+            },
+            {
+                icon: '/img/menu/zhengshu.png',
+                text: '证书查询'
+            }
+        ]
+    },
+    {
+        item: 'meun-3',
+        nav: [
+            {
+                icon: '/img/menu/kehu.png',
+                text: '客户案例'
+            },
+            {
+                icon: '/img/menu/lianxi.png',
+                text: '联系我们'
+            }
+        ]
+    },
+];
+const Menu = (props) => {
+    return props.menuShow && (
+        <div className="menu">
+            <div className="head">
+                <div className="top"><span onClick={ props.handleCloseMenu }>X</span></div>
+                <div className="logo">
+                    <img src="/img/menu/logo.png" alt="logo"/>
+                </div>
+                <div className="opration">
+                    <Link className="a" to="/login">登录</Link> | <Link  className="a" to="/register">注册</Link>
+                </div>
+                <div className="text">
+                    <img src="/img/menu/text.png" alt="text"/>
+                </div>
+            </div>
+            {
+                MenuData.map((v, k) => (
+                    <div className="menu-list" key={k}>
+                        {
+                            v.nav.map((vv, kk) => (
+                                <div className="menu-item" key={kk}>
+                                    <span className="icon" style={{ backgroundImage: `url(${vv.icon})` }}></span>
+                                    { vv.text }
+                                </div>
+                            ))
+                        }
+                    </div>
+                ))
+            }
+            <div className="bottom-logo">
+                <img src="/img/logo_bottom.png" alt="logo_bottom"/>
+            </div>
+        </div>
+    )
+};
 
 export default class Home extends Component {
+    state = {
+        menuShow: false,
+    };
+
+    onOpenMenu = () => {
+        this.setState({ menuShow: !this.state.menuShow });
+    };
+
+    handleCloseMenu = () => {
+        this.setState({ menuShow: false });
+    };
+
+    onRedirectLoginPage = () => {
+    };
+
+    onRedirectRegisterPage = () => {
+        console.log(this.props);
+    };
+
     render() {
         return (
             <div className='Home'>
                 <div className="nav">
-                    <div className="nav-flex">
-                        <div className="nav-flex-item">
-                            <img src="/img/list.svg" alt="asd" />
+                    <div className="nav-container">
+                        <div className="list">
+                            <img src="/img/list.png" alt="list" onClick={ this.onOpenMenu } />
                         </div>
-                        <div className="nav-flex-item search">
+                        <div className="search">
                             <SearchBar placeholder="请搜索您想查询的音乐" />
                         </div>
-                        <div className="nav-flex-item">
-                            <img src="/img/cart.svg" alt="qwe" />
+                        <div className="cart">
+                            <img src="/img/cart.png" alt="cart" />
                         </div>
                     </div>
                 </div>
+                <Menu menuShow={ this.state.menuShow } handleCloseMenu={ this.handleCloseMenu }/>
+
                 <div className="banner">
                     <Carousel autoplay>
                         {
@@ -34,8 +140,8 @@ export default class Home extends Component {
                                 '/img/banner1.png',
                                 '/img/banner2.png',
                                 '/img/banner3.png'
-                            ].map((src) => (
-                                <div className="item" >
+                            ].map((src, key) => (
+                                <div className="item" key={key}>
                                     <img src={ src } alt=""/>
                                 </div>
                             ))
@@ -52,8 +158,8 @@ export default class Home extends Component {
                     <SectionTitle title="音乐分类" text="Music" />
                     <div className="container">
                         {
-                            ['激烈、热血', '浪漫、爱情', '商业广告'].map((val) => (
-                                <div className="item">{ val }</div>
+                            ['激烈、热血', '浪漫、爱情', '商业广告'].map((val, key) => (
+                                <div className="item" key={key}>{ val }</div>
                             ))
                         }
                     </div>
@@ -65,8 +171,8 @@ export default class Home extends Component {
                     <SectionTitle title="最新促销" text="Newest" />
                     <div className="container">
                         {
-                            ['热门曲目', '最新加入'].map((val) => (
-                                <div className="item">
+                            ['热门曲目', '最新加入'].map((val, key) => (
+                                <div className="item" key={key}>
                                     <table>
                                         <caption>{ val }</caption>
                                         <thead>
@@ -81,8 +187,8 @@ export default class Home extends Component {
                                         </thead>
                                         <tbody>
                                         {
-                                            Array.from(new Array(9)).map(() => (
-                                                <tr>
+                                            Array.from(new Array(9)).map((v, k) => (
+                                                <tr key={k}>
                                                     <td>巴西漫游</td>
                                                     <td>565050053</td>
                                                     <td>温馨</td>
@@ -127,7 +233,7 @@ export default class Home extends Component {
                                 null
                             ].map((v, k) => {
                                 return k !== 5 ? (
-                                    <div className="item">
+                                    <div className="item" key={k}>
                                         <div className="img">
                                             <div className="mask">
                                                 <img src="/img/case/click.png" alt="click"/>
@@ -137,7 +243,7 @@ export default class Home extends Component {
                                         <div className="title">曲名：{v.title}</div>
                                     </div>
                                 ) : (
-                                    <div className="item">
+                                    <div className="item" key={k}>
                                         <div className="img">
                                             <div>查看更多</div>
                                         </div>
@@ -163,8 +269,8 @@ export default class Home extends Component {
                                 '/img/cooperation/logo8.png',
                                 '/img/cooperation/logo9.png',
                                 '/img/cooperation/logo10.png'
-                            ].map((v) => (
-                                <div className="item">
+                            ].map((v, k) => (
+                                <div className="item" key={k}>
                                     <img src={v} alt="logo"/>
                                 </div>
                             ))

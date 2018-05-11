@@ -1,0 +1,114 @@
+.Login {
+  background: url("/img/login/bg.png") no-repeat center / 100% 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .logo {
+    text-align: center;
+    margin-bottom: 5vh;
+    img {
+      max-width: 50%;
+    }
+  }
+  .main {
+    width: 280px;
+    .form {
+      margin-bottom: 30px;
+      .username, .password {
+        background: rgba(255,255,255, .1);
+        height: 40px;
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        label {
+          width: 15%;
+          height: 100%;
+          background: red;
+          background: url("/img/login/icon-user.png") no-repeat center / 30%;
+        }
+        &.password label {
+          background: url("/img/login/icon-pass.png") no-repeat center / 30%;
+        }
+        input {
+          box-sizing: border-box;
+          width: 80%;
+          background: none;
+          margin: 0;
+          height: 70%;
+          line-height: 40px;
+          border: none;
+          color: #ddd;
+          font-size: 14px;
+        }
+      }
+      .password, .remember {
+        margin-bottom: 10px;
+      }
+      .remember {
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        color: #666;
+      }
+      .login-btn {
+        height: 40px;
+        background: #d61c06;
+        border-radius: 4px;
+        color: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+      }
+    }
+    .social {
+      margin-bottom: 5vh;
+      .text {
+        margin-bottom: 12px;
+        img {
+          max-width: 100%;
+        }
+      }
+      .icon-group {
+        display: flex;
+        justify-content: center;
+        div {
+          margin: 0 20px;
+          width: 25px;
+          height: 25px;
+          &.wx {
+            background: url("/img/login/wx.png") no-repeat center / 100% 100%;
+          }
+          &.qq {
+            background: url("/img/login/qq.png") no-repeat center / 100% 100%;
+          }
+          &.wb {
+            background: url("/img/login/wb.png") no-repeat center / 100% 100%;
+          }
+        }
+      }
+    }
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .text {
+        color: #666;
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+      .register-btn {
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        background: none;
+        color: #aaa;
+        font-size: 13px;
+        padding: 5px 15px;
+      }
+    }
+  }
+}
