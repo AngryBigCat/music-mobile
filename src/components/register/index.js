@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.scss';
-import { InputItem, List, Tabs } from 'antd-mobile';
+import { Tabs } from 'antd-mobile';
 
 const tabs = [
     { title: '个人', sub: '1' },
@@ -12,6 +12,7 @@ export default class Register extends Component {
         return (
             <div className='Register'>
                 <div className="head">
+                    <img className="close" src="/img/close.png" alt="close" onClick={ () => { this.props.history.push('/home') } } />
                     <img src="/img/register/head.png" alt="head"/>
                 </div>
                 <Tabs tabs={ tabs }>
@@ -22,7 +23,7 @@ export default class Register extends Component {
                         </div>
                         <div className="input-group code">
                             <label htmlFor="">短信验证码</label>
-                            <input type="text" placeholder="请输入获取的验证码"/>
+                            <input type="text" placeholder="请输入验证码"/>
                             <button>发送验证码</button>
                         </div>
                         <div className="input-group">

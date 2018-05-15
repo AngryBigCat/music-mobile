@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-/*import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect
-} from 'react-router-dom';*/
-// import Home from '../home';
-// import Shop from '../shop';
+import { Route } from 'react-router-dom';
+import Nav from './nav';
+import './index.scss'
+
+
 
 export default class Index extends Component {
     render() {
         return (
             <div className='Index'>
-                <div>菜单|购物车</div>
-                {/*<Route path="home" component={ Home } />*/}
-                {/*<Route path="shop" component={ Shop } />*/}
+                <Nav/>
+                {
+                    this.props.routes.map((route, k) =>
+                        <Route key={ k } path={ route.path } component={ route.component } />
+                    )
+                }
             </div>
         )
     }

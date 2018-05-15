@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './index.scss';
-import { Carousel, SearchBar } from 'antd-mobile';
-import { Link } from 'react-router-dom';
+import { Carousel } from 'antd-mobile';
 
 const SectionTitle = (props) => (
     <div className="section-title">
@@ -10,129 +9,10 @@ const SectionTitle = (props) => (
     </div>
 );
 
-const MenuData = [
-    {
-        item: 'meun-1',
-        nav: [
-            {
-                icon: '/img/menu/shouye.png',
-                text: '首页'
-            },
-            {
-                icon: '/img/menu/yinyue.png',
-                text: '音乐查找'
-            },
-            {
-                icon: '/img/menu/xiaoshou.png',
-                text: '销售排行榜'
-            },
-            {
-                icon: '/img/menu/dingzhi.png',
-                text: '定制配乐'
-            }
-        ]
-    },
-    {
-        item: 'meun-2',
-        nav: [
-            {
-                icon: '/img/menu/shouquan.png',
-                text: '授权证书说明'
-            },
-            {
-                icon: '/img/menu/zhengshu.png',
-                text: '证书查询'
-            }
-        ]
-    },
-    {
-        item: 'meun-3',
-        nav: [
-            {
-                icon: '/img/menu/kehu.png',
-                text: '客户案例'
-            },
-            {
-                icon: '/img/menu/lianxi.png',
-                text: '联系我们'
-            }
-        ]
-    },
-];
-const Menu = (props) => {
-    return props.menuShow && (
-        <div className="menu">
-            <div className="head">
-                <div className="top"><span onClick={ props.handleCloseMenu }>X</span></div>
-                <div className="logo">
-                    <img src="/img/menu/logo.png" alt="logo"/>
-                </div>
-                <div className="opration">
-                    <Link className="a" to="/login">登录</Link> | <Link  className="a" to="/register">注册</Link>
-                </div>
-                <div className="text">
-                    <img src="/img/menu/text.png" alt="text"/>
-                </div>
-            </div>
-            {
-                MenuData.map((v, k) => (
-                    <div className="menu-list" key={k}>
-                        {
-                            v.nav.map((vv, kk) => (
-                                <div className="menu-item" key={kk}>
-                                    <span className="icon" style={{ backgroundImage: `url(${vv.icon})` }}></span>
-                                    { vv.text }
-                                </div>
-                            ))
-                        }
-                    </div>
-                ))
-            }
-            <div className="bottom-logo">
-                <img src="/img/logo_bottom.png" alt="logo_bottom"/>
-            </div>
-        </div>
-    )
-};
-
 export default class Home extends Component {
-    state = {
-        menuShow: false,
-    };
-
-    onOpenMenu = () => {
-        this.setState({ menuShow: !this.state.menuShow });
-    };
-
-    handleCloseMenu = () => {
-        this.setState({ menuShow: false });
-    };
-
-    onRedirectLoginPage = () => {
-    };
-
-    onRedirectRegisterPage = () => {
-        console.log(this.props);
-    };
-
     render() {
         return (
             <div className='Home'>
-                <div className="nav">
-                    <div className="nav-container">
-                        <div className="list">
-                            <img src="/img/list.png" alt="list" onClick={ this.onOpenMenu } />
-                        </div>
-                        <div className="search">
-                            <SearchBar placeholder="请搜索您想查询的音乐" />
-                        </div>
-                        <div className="cart">
-                            <img src="/img/cart.png" alt="cart" />
-                        </div>
-                    </div>
-                </div>
-                <Menu menuShow={ this.state.menuShow } handleCloseMenu={ this.handleCloseMenu }/>
-
                 <div className="banner">
                     <Carousel autoplay>
                         {

@@ -15,6 +15,13 @@ body {
     img {
       width: 100%;
     }
+    .close {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: 10px;
+      top: 10px;
+    }
   }
   .form {
     padding: 10px 20px 0;

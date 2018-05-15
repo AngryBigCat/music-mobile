@@ -6,6 +6,4 @@ class Util {
     }
 }
 
-
-
-export default new Util;
+export default new Util();

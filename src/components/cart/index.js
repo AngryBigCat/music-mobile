@@ -3,6 +3,7 @@ import './index.scss';
 import Util from '@/utils';
 import Mock from 'mockjs';
 import { Picker } from 'antd-mobile';
+import store from '../../store';
 
 const data = Mock.mock({
     'list|1-10': [ {
@@ -14,7 +15,7 @@ const data = Mock.mock({
         'commerces_text': 1,
         'region_text': 1,
         'limit_text': 1,
-        'checked': false
+        'checked': true
     } ]
 });
 
@@ -40,15 +41,26 @@ const region = [
     }
 ];
 
+
 export default class Cart extends Component {
     state = {
         total_price: 0,
         cartItems: data.list,
-        all_checked: false
+        all_checked: true
     };
 
     componentDidMount = () => {
         this.updateTotalPrice();
+    };
+
+    onBalanceAccountCart = () => {
+        // 跳转order订单页
+        this.props.history.push('/order');
+        store.dispatch({
+            type: 'BALANCE_CART',
+            cartItems: data.list,
+            total_price: this.state.total_price
+        });
     };
 
     onDelCartItem = (k) => {
@@ -150,7 +162,7 @@ export default class Cart extends Component {
                                             <input type="checkbox"
                                                    checked={ v.checked }
                                                    className="check" id={ `check${k}` }
-                                                   onClick={ this.onChangeItemChecked.bind(this, k) }/>
+                                                   onChange={ this.onChangeItemChecked.bind(this, k) }/>
                                             <label htmlFor={ `check${k}` }></label>
                                         </div>
                                         { v.name }
@@ -239,9 +251,9 @@ export default class Cart extends Component {
                 </div>
                 <div className="bottom">
                     <div className="left">
-                        <div className="select" onClick={ this.onChangeAllItemChecked }>
+                        <div className="select">
                             <div className="checkbox">
-                                <input type="checkbox" checked={ this.state.all_checked } className="check" id="all-check"/>
+                                <input type="checkbox" onChange={ this.onChangeAllItemChecked } checked={ this.state.all_checked } className="check" id="all-check"/>
                                 <label htmlFor="all-check">全选</label>
                             </div>
                         </div>
@@ -250,7 +262,9 @@ export default class Cart extends Component {
                             <span className="text2">￥{ this.state.total_price }</span>
                         </div>
                     </div>
-                    <div className="right">结算(1)</div>
+                    <div className="right" onClick={ this.onBalanceAccountCart }>
+                        结算({ this.state.cartItems.filter(item => item.checked).length })
+                    </div>
                 </div>
             </div>
         )
