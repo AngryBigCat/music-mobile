@@ -1,0 +1,85 @@
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.listen {
+  .player {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    .header {
+
+      .backBtn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 20px;
+        color: white;
+        font-size: 20px;
+      }
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 10%;
+      background: #d51807;
+      font-size: 16px;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bolder;
+      z-index: 1;
+    }
+    .main {
+      background: white;
+      position: absolute;
+      top: 0;
+      height: 90%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .disk {
+        width: 60%;
+        animation: rotate 10s linear infinite;
+        img {
+         width: 100%;
+        }
+      }
+      .pause {
+        animation-play-state: paused;
+      }
+      .run {
+        animation-play-state: running;
+      }
+    }
+    .footer {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      background: #ccc;
+      .progress {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: #666;
+        height: 40px;
+        .slider {
+          width: 50%;
+          margin: 0 20px;
+        }
+      }
+      .control {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        color: #d51807;
+        font-size: 40px;
+      }
+    }
+  }
+}

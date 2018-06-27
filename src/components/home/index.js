@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.scss';
-import { Carousel } from 'antd-mobile';
+import { Toast, Carousel } from 'antd-mobile';
+import { getHomeData } from "../../api"
 
 const SectionTitle = (props) => (
     <div className="section-title">
@@ -10,6 +11,21 @@ const SectionTitle = (props) => (
 );
 
 export default class Home extends Component {
+    onAddMusicToCart = (musicId) => {
+        Toast.info("添加购物车成功！", 1);
+        console.log(musicId)
+    };
+
+    onPlayMusicAudio = (musicId) => {
+        console.log(musicId)
+    };
+
+    componentDidMount = () => {
+        getHomeData().then(res => {
+            this.componentDidMount();
+        })
+    };
+
     render() {
         return (
             <div className='Home'>
@@ -61,7 +77,7 @@ export default class Home extends Component {
                                             <th>编号</th>
                                             <th>曲风</th>
                                             <th>时间</th>
-                                            <th>播放</th>
+                                            <th>试听</th>
                                             <th>购买</th>
                                         </tr>
                                         </thead>
@@ -73,8 +89,12 @@ export default class Home extends Component {
                                                     <td>565050053</td>
                                                     <td>温馨</td>
                                                     <td>00:32</td>
-                                                    <td>播放</td>
-                                                    <td>购买</td>
+                                                    <td>
+                                                        <i className="fa fa-play-circle-o"  onClick={ this.onPlayMusicAudio.bind(this, k) }></i>
+                                                    </td>
+                                                    <td>
+                                                        <i className="fa fa-shopping-cart"  onClick={ this.onAddMusicToCart.bind(this, k) }></i>
+                                                    </td>
                                                 </tr>
                                             ))
                                         }

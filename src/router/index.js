@@ -10,6 +10,7 @@ import Cart from '../components/cart';
 import Login from '../components/login';
 import Register from '../components/register';
 import Order from '../components/order';
+import Listen from '../components/listen'
 
 const routes = [
     {
@@ -19,6 +20,10 @@ const routes = [
     {
         path: "/register",
         component: Register
+    },
+    {
+        path: "/listen/:id",
+        component: Listen
     },
     {
         path: "/",
@@ -37,7 +42,7 @@ const routes = [
                 component: Order
             }
         ]
-    }
+    },
 ];
 
 export default class RouterConfig extends Component {
