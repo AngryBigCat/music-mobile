@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.scss';
 import { Toast, Carousel } from 'antd-mobile';
-import { getHomeData } from "../../api"
+import { getMusicList, addMusicToCart, getHome } from "../../api"
 
 const SectionTitle = (props) => (
     <div className="section-title">
@@ -11,19 +11,29 @@ const SectionTitle = (props) => (
 );
 
 export default class Home extends Component {
-    onAddMusicToCart = (musicId) => {
-        Toast.info("添加购物车成功！", 1);
-        console.log(musicId)
+    state = {
+      musics: [],
+        text: '',
     };
 
-    onPlayMusicAudio = (musicId) => {
-        console.log(musicId)
+    onAddMusicToCart = (musicId) => {
+        if (localStorage.getItem('token')) {
+            addMusicToCart.call(this, musicId);
+            Toast.success("添加购物车成功!");
+        } else {
+            this.props.history.push('/login');
+        }
     };
 
     componentDidMount = () => {
-        getHomeData().then(res => {
-            this.componentDidMount();
-        })
+        getMusicList().then(res => {
+            let musics = res.data.musics;
+            this.setState({ musics });
+        });
+
+        getHome().then(({data}) => {
+            this.setState({text: data.text})
+        });
     };
 
     render() {
@@ -46,11 +56,9 @@ export default class Home extends Component {
                 </div>
                 <section className="introduction">
                     <SectionTitle title="公司介绍" text="Introduction" />
-                    <div className="info">
-                        美论文化传播创立于2009年，是一家专注于品牌形象建设和品牌传播的网络服务机构，致力于为企业提供全面、丰富的网络解决方案。在网站创意设计、营销推广到技术研发领域拥有丰富经验，我们通过建立对目标客户和用户行为的分析，整合高质量设计和最新技术，为您打造创意十足、有价值的品牌营销一站式服务体验。
-                    </div>
+                    <div className="info" dangerouslySetInnerHTML={ {__html: this.state.text } } />
                 </section>
-                <section className="classic">
+                {/*<section className="classic">
                     <SectionTitle title="音乐分类" text="Music" />
                     <div className="container">
                         {
@@ -62,15 +70,15 @@ export default class Home extends Component {
                     <div className="bottom">
                         <button className="view-all" >查看全部</button>
                     </div>
-                </section>
+                </section>*/}
                 <section className="newest">
                     <SectionTitle title="最新促销" text="Newest" />
                     <div className="container">
                         {
-                            ['热门曲目', '最新加入'].map((val, key) => (
+                            this.state.musics.map((val, key) => (
                                 <div className="item" key={key}>
                                     <table>
-                                        <caption>{ val }</caption>
+                                        <caption>{ val.name }</caption>
                                         <thead>
                                         <tr>
                                             <th>曲名</th>
@@ -83,17 +91,19 @@ export default class Home extends Component {
                                         </thead>
                                         <tbody>
                                         {
-                                            Array.from(new Array(9)).map((v, k) => (
+                                            val.musics.map((v, k) => (
                                                 <tr key={k}>
-                                                    <td>巴西漫游</td>
-                                                    <td>565050053</td>
-                                                    <td>温馨</td>
-                                                    <td>00:32</td>
+                                                    <td>{ v.name }</td>
+                                                    <td>{ v.number }</td>
+                                                    <td>{ v.class }</td>
+                                                    <td>{ v.duration }</td>
                                                     <td>
-                                                        <i className="fa fa-play-circle-o"  onClick={ this.onPlayMusicAudio.bind(this, k) }></i>
+                                                        <i className="fa fa-play-circle-o"  onClick={ () => {
+                                                            this.props.history.push(`/listen/${v.id}`)
+                                                        } } />
                                                     </td>
                                                     <td>
-                                                        <i className="fa fa-shopping-cart"  onClick={ this.onAddMusicToCart.bind(this, k) }></i>
+                                                        <i className="fa fa-shopping-cart"  onClick={ this.onAddMusicToCart.bind(this, v.id) } />
                                                     </td>
                                                 </tr>
                                             ))
@@ -111,29 +121,34 @@ export default class Home extends Component {
                         {
                             [
                                 {
+                                    id: 2701,
                                     title: '晨光希望',
                                     img: '/img/case/case1.jpg'
                                 },
                                 {
+                                    id: 87,
                                     title: '乐活一天',
                                     img: '/img/case/case2.jpg'
                                 },
                                 {
+                                    id: 2752,
                                     title: '时尚台北',
                                     img: '/img/case/case3.jpg'
                                 },
                                 {
+                                    id: 2464,
                                     title: '流动曙光',
                                     img: '/img/case/case4.jpg'
                                 },
                                 {
+                                    id: 764,
                                     title: '踢踏舞会',
                                     img: '/img/case/case5.jpg'
                                 },
                                 null
                             ].map((v, k) => {
                                 return k !== 5 ? (
-                                    <div className="item" key={k}>
+                                    <div className="item" key={k} onClick={ () => this.props.history.push(`/listen/${v.id}`) }>
                                         <div className="img">
                                             <div className="mask">
                                                 <img src="/img/case/click.png" alt="click"/>

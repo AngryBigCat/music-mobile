@@ -1,23 +1,10 @@
 import React, { Component } from 'react';
 import './index.scss';
-import Util from '@/utils';
-import Mock from 'mockjs';
+import Util from '../../utils';
+// import Mock from 'mockjs';
 import { Picker } from 'antd-mobile';
 import store from '../../store';
-
-const data = Mock.mock({
-    'list|1-10': [ {
-        'music_id|+1': 1,
-        'name': '@first',
-        'commerces_price': '@natural(300, 400)',
-        'nocommerces_price': '@natural(200, 300)',
-        'real_price': '@commerces_price',
-        'commerces_text': 1,
-        'region_text': 1,
-        'limit_text': 1,
-        'checked': true
-    } ]
-});
+import { getShopCart } from '../../api';
 
 const year = [
     {
@@ -41,16 +28,41 @@ const region = [
     }
 ];
 
-
 export default class Cart extends Component {
     state = {
         total_price: 0,
-        cartItems: data.list,
+        cartItems: [],
         all_checked: true
     };
 
     componentDidMount = () => {
-        this.updateTotalPrice();
+        let token = localStorage.getItem('token');
+        if (!token) {
+            this.props.history.push("/login");
+            return
+        }
+
+        getShopCart().then(({data}) => {
+            if (!data.musics) return;
+            let cartItems = [];
+            data.musics.forEach((music) => {
+                let m = {
+                    'music_id': music.id,
+                    'name': music.name,
+                    'commerces_price': music.price,
+                    'nocommerces_price': music.noprice,
+                    'real_price': music.price,
+                    'commerces_text': 1,
+                    'region_text': 1,
+                    'limit_text': 1,
+                    'checked': true,
+                    'number': music.number
+                };
+                cartItems.push(m);
+            });
+            this.setState({cartItems});
+            this.updateTotalPrice();
+        });
     };
 
     onBalanceAccountCart = () => {
@@ -58,12 +70,16 @@ export default class Cart extends Component {
         this.props.history.push('/order');
         store.dispatch({
             type: 'BALANCE_CART',
-            cartItems: data.list,
+            cartItems: this.state.cartItems,
             total_price: this.state.total_price
         });
     };
 
     onDelCartItem = (k) => {
+        let cartData = localStorage.getItem('cartData').split(',');
+        cartData.splice(cartData.indexOf(this.state.cartItems[k].music_id.toString()), 1);
+        localStorage.setItem('cartData', cartData.join(','));
+
         let items = Util.removeItem(this.state.cartItems, k);
         this.setState({ cartItems: items });
         this.updateTotalPrice();
@@ -149,6 +165,10 @@ export default class Cart extends Component {
         this.setState({ total_price });
     };
 
+    onPlayMusic = (music_id) => {
+        this.props.history.push(`/listen/${music_id}`);
+    };
+
     render() {
         return (
             <div className='Shop'>
@@ -166,7 +186,7 @@ export default class Cart extends Component {
                                             <label htmlFor={ `check${k}` }></label>
                                         </div>
                                         { v.name }
-                                        <div className="icon-play" />
+                                        <div className="icon-play" onClick={ this.onPlayMusic.bind(this, v.music_id) } />
                                     </div>
                                     <div className="del">
                                         <div className="icon-del" onClick={ this.onDelCartItem.bind(this, k) } />

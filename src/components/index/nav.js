@@ -17,6 +17,11 @@ class Nav extends Component {
         this.setState({ menuShow: false });
     };
 
+    onSearchSubmit = () => {
+        let v = this.refs.searchBar.state.value;
+        this.props.history.push(`/search?q=${v}`);
+    };
+
     render() {
         return (
             <div className="nav">
@@ -26,7 +31,7 @@ class Nav extends Component {
                             <img src="/img/list.png" alt="list" onClick={ this.onOpenMenu } />
                         </div>
                         <div className="search">
-                            <SearchBar placeholder="请搜索您想查询的音乐" />
+                            <SearchBar ref="searchBar" placeholder="请搜索您想查询的音乐" onSubmit={ this.onSearchSubmit } />
                         </div>
                         <div className="cart">
                             <img src="/img/cart.png" alt="cart" onClick={ () => this.props.history.push('/cart')  }/>

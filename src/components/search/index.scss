@@ -1,0 +1,28 @@
+.search {
+  table {
+    margin-top: 10px;
+    width: 100%;
+    background: white;
+    thead {
+      tr {
+        background: #d51807;
+        color: white;
+        height: 40px;
+      }
+    }
+    tbody {
+      text-align: center;
+      color: #333;
+      font-size: 13px;
+      tr {
+        height: 30px;
+        td:nth-of-type(5), td:nth-of-type(6) {
+          font-size: 16px;
+        }
+      }
+      tr:nth-of-type(odd) {
+        background: #eee;
+      }
+    }
+  }
+}

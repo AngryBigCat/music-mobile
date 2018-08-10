@@ -1,0 +1,41 @@
+.profile {
+  .container {
+    background: white;
+    padding: 5px;
+    margin-top: 5px;
+    color: #666;
+    height: 100vh;
+    .header {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      span {
+        display: inline-block;
+        width: 5px;
+        background: #d51807;
+        height: 20px;
+        margin-right: 8px;
+      }
+    }
+    .section {
+      .item {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        padding: 15px;
+        .left {
+          i {
+            margin-right: 5px;
+          }
+        }
+        .right {
+          i {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}

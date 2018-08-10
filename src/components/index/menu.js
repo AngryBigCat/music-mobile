@@ -10,7 +10,7 @@ const MenuData = [
                 text: '首页',
                 path: '/home'
             },
-            {
+            /*{
                 icon: '/img/menu/yinyue.png',
                 text: '音乐查找'
             },
@@ -21,7 +21,7 @@ const MenuData = [
             {
                 icon: '/img/menu/dingzhi.png',
                 text: '定制配乐'
-            }
+            }*/
         ]
     },
     {
@@ -29,15 +29,16 @@ const MenuData = [
         nav: [
             {
                 icon: '/img/menu/shouquan.png',
-                text: '授权证书说明'
+                text: '授权证书说明',
+                path: '/credit'
             },
-            {
+            /*{
                 icon: '/img/menu/zhengshu.png',
                 text: '证书查询'
-            }
+            }*/
         ]
     },
-    {
+    /*{
         item: 'meun-3',
         nav: [
             {
@@ -49,9 +50,32 @@ const MenuData = [
                 text: '联系我们'
             }
         ]
-    },
+    },*/
 ];
+
+let Operation = () =>
+    localStorage.getItem("token") ?
+        (
+            <div className="operation">
+                <span className="a" onClick={ () => {
+                    localStorage.removeItem("token");
+                    window.location.reload();
+                } }>退出</span>
+            </div>
+        ) :
+        (
+            <div className="operation">
+                <Link className="a" to="/login">登录</Link> | <Link className="a" to="/register">注册</Link>
+            </div>
+        );
+
 export default class Menu extends Component {
+    onProfile = () => {
+        let token = localStorage.getItem('token');
+        if (token) {
+            this.props.history.push('/profile');
+        }
+    };
     render() {
         return this.props.menuShow && (
             <div className="menu-side">
@@ -60,11 +84,9 @@ export default class Menu extends Component {
                         <span onClick={ this.props.handleCloseMenu } />
                     </div>
                     <div className="logo">
-                        <img src="/img/menu/logo.png" alt="logo"/>
+                        <img onClick={ this.onProfile } src="/img/menu/logo.png" alt="logo"/>
                     </div>
-                    <div className="opration">
-                        <Link className="a" to="/login">登录</Link> | <Link  className="a" to="/register">注册</Link>
-                    </div>
+                    <Operation/>
                     <div className="text">
                         <img src="/img/menu/text.png" alt="text"/>
                     </div>
@@ -86,9 +108,9 @@ export default class Menu extends Component {
                         </div>
                     ))
                 }
-                <div className="bottom-logo">
+                {/*<div className="bottom-logo">
                     <img src="/img/logo_bottom.png" alt="logo_bottom"/>
-                </div>
+                </div>*/}
             </div>
         )
     }

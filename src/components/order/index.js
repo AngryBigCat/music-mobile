@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './index.scss';
 // import Util from '@/utils';
 // import Mock from 'mockjs';
-// import { Picker } from 'antd-mobile';
+import { Toast } from 'antd-mobile';
 import store from '../../store';
+import { getInviters, getOrder, postOrder } from '../../api';
 
 const OrderTitle = (props) => (
     <div className="order-title">
@@ -12,71 +13,89 @@ const OrderTitle = (props) => (
     </div>
 );
 
-const info_field = [
+let info_field = [
     {
-        label: '公司或者个人名称',
-        placeholder: '请输入您公司(或者个人)的名称',
-        required: true
+        label: '公司名称',
+        placeholder: '请输入您公司的名称',
+        required: true,
+        name: 'info_company',
+        value: ''
     },
     {
-        label: '地址',
-        placeholder: '请输入您公司(或者个人)的地址',
-        required: true
+        label: '联系人',
+        placeholder: '请输入您的姓名',
+        required: true,
+        name: 'info_name',
+        value: ''
     },
     {
         label: 'E-Mail',
         placeholder: '请输入您收取授权书的邮箱',
-        required: true
-    },
-    {
-        label: '联络人',
-        placeholder: '请输入您的姓名',
-        required: true
+        required: true,
+        name: 'info_email',
+        value: ''
     },
     {
         label: '手机号',
         placeholder: '请输入您的手机号',
-        required: true
+        required: true,
+        name: 'info_phone',
+        value: ''
+    },
+    {
+        label: '本订单备注',
+        placeholder: '请输入您的备注信息',
+        required: true,
+        name: 'info_remark',
+        value: ''
     }
 ];
 
-const certify_field = [
+let certify_field = [
     {
-        label: '授权使用人(公司名)',
-        placeholder: '请输入被授权使用人(或公司名)',
-        required: true
+        label: '授权人(公司名)',
+        placeholder: '请输入被授权人(公司名)',
+        required: true,
+        name: 'cert_company',
+        value: ''
     },
     {
-        label: '公司注册号',
-        placeholder: '请输入公司注册号',
-        required: true
+        label: '营业执照号',
+        placeholder: '请输入营业执照号',
+        required: true,
+        name: 'cert_num',
+        value: ''
     },
     {
-        label: '授权使用人手机',
-        placeholder: '请输入使用人手机号',
-        required: true
+        label: '授权人地址',
+        placeholder: '请输入地址',
+        required: true,
+        name: 'cert_address',
+        value: ''
     },
     {
-        label: '其他备注资料',
-        placeholder: '请输入其他备注资料',
-        required: true
+        label: '授权人手机',
+        placeholder: '请输入手机号',
+        required: true,
+        name: 'cert_phone',
+        value: ''
     },
     {
         label: '授权标的物',
         placeholder: '请输入授权标的物',
-        required: true
+        required: true,
+        name: 'cert_sign',
+        value: ''
     },
     {
         label: '项目链接',
-        placeholder: '请输入项目链接',
-        required: false
-    },
-    {
-        label: '邀请码',
-        placeholder: '请输入邀请码',
-        required: false
+        placeholder: '请输入项目链接(选填)',
+        required: false,
+        name: 'cert_link',
+        value: ''
     }
 ];
+
 
 const commerces_eum = {
     1: '商业使用',
@@ -93,12 +112,85 @@ const region_eum = {
 
 export default class Order extends Component {
     state = {
-        cartItems: store.getState().cartItems,
-        total_price: store.getState().total_price
+        cartItems: [],
+        total_price: 0,
+        inviters: [],
+        inviter: '',
+        info_field,
+        certify_field
     };
 
+    componentDidMount() {
+        let cartItems = store.getState().cartItems,
+            total_price = store.getState().total_price;
+        if (!cartItems || !total_price) {
+            this.props.history.push('/home');
+        }
+        this.setState({cartItems, total_price});
+        getInviters().then(({data}) => {
+            this.setState({inviters: data.inviters, inviter: data.inviters[0].name})
+        });
+
+        getOrder('token', localStorage.getItem('token')).then(({data}) => {
+            let info_field = this.state.info_field;
+            let certify_field = this.state.certify_field;
+            info_field[0].value = data.order.name;
+            info_field[1].value = data.order.pname;
+            info_field[2].value = data.order.email;
+            info_field[3].value = data.order.phone;
+            info_field[4].value = data.order.text;
+
+            certify_field[0].value = data.order.gsname;
+            certify_field[1].value = data.order.gsnum;
+            certify_field[2].value = data.order.site;
+            certify_field[3].value = data.order.gsiphone;
+            certify_field[4].value = data.order.goodsname;
+            certify_field[5].value = data.order.link;
+            this.setState({ info_field, certify_field });
+        });
+    }
+
     onPay = () => {
-        console.log(store.getState());
+        if (!this.state.cartItems || !this.state.total_price) {
+            Toast.fail('订单为空！');
+            return;
+        }
+        let data = {};
+        this.state.info_field.concat(this.state.certify_field).forEach((field) => {
+            data[field.name] = field.value;
+        });
+        data['info_inviter'] = this.state.inviter;
+        data['musics'] = store.getState().cartItems;
+        data['total_price'] = store.getState().total_price;
+        data['token'] = localStorage.getItem('token');
+        postOrder(data).then(({data}) => {
+            if (data.code === 0) {
+                let cartData = localStorage.getItem('cartData').split(',');
+                store.getState().cartItems.forEach((music) => {
+                    cartData.splice(cartData.indexOf(music.music_id.toString()), 1);
+                });
+                localStorage.setItem('cartData', cartData.join(','));
+
+                this.props.history.push('/choice/' + data.ordernum);
+                // window.location.href = "http://youbanquan.com/zfb/" + data.total_price + "/" + data.ordernum;
+            }
+        })
+    };
+
+    onInfoChange = (k, e) => {
+        let info_field = this.state.info_field;
+        info_field[k].value = e.target.value;
+        this.setState({info_field});
+    };
+
+    onCertifyChange = (k, e) => {
+        let certify_field = this.state.certify_field;
+        certify_field[k].value = e.target.value;
+        this.setState({certify_field});
+    };
+
+    onInviterChange = (e) => {
+        this.setState({ inviter: e.target.value });
     };
 
     render() {
@@ -123,6 +215,8 @@ export default class Order extends Component {
                                                     case 2:
                                                         price = v.nocommerces_price;
                                                         break;
+                                                    default:
+                                                        break;
                                                 }
                                                 return commerces_eum[v.commerces_text] + '：' + price;
                                             })()
@@ -135,27 +229,36 @@ export default class Order extends Component {
                         </div>
                     </div>
                     <div className="section">
-                        <OrderTitle title="订购信息" text="" />
+                        <OrderTitle title="订购信息(不显示在授权证书上)" text="" />
                         <div className="order-list">
                             {
-                                info_field.map((v, k) =>
+                                this.state.info_field.map((v, k) =>
                                     <div className="order-input" key={ k }>
                                         <label htmlFor="">{ v.label }：</label>
-                                        <input type="text" placeholder={ v.placeholder }/>
+                                        <input type="text" onChange={ this.onInfoChange.bind(this, k) } placeholder={ v.placeholder } value={ v.value }/>
                                     </div>
                                 )
                             }
+                            <div className="order-input">
+                                <label>客服：</label>
+                                <select onChange={ this.onInviterChange }>
+                                    {
+                                        this.state.inviters.map((v, k) =>
+                                            <option key={ k }>{v.name}</option>
+                                        )
+                                    }
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div className="section">
                         <OrderTitle title="授权书资料(必填)" text="" />
                         <div className="order-list">
                             {
-                                certify_field.map((v, k) =>
+                                this.state.certify_field.map((v, k) =>
                                     <div className="order-input" key={ k }>
                                         <label htmlFor="">{ v.label }：</label>
-                                        <input type="text" placeholder={ v.placeholder }/>
-                                        { v.required ? '' : (<span>(可选填)</span>) }
+                                        <input type="text" onChange={ this.onCertifyChange.bind(this, k) }  placeholder={ v.placeholder } value={ v.value } />
                                     </div>
                                 )
                             }

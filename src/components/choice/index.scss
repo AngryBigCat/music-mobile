@@ -1,0 +1,58 @@
+.choice {
+  padding: 5px;
+  background: white;
+  height: 100vh;
+  margin-top: 5px;
+  header {
+    padding: 0 5px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    color: #aaa;
+    span {
+      display: inline-block;
+      width: 5px;
+      background: #d51807;
+      height: 22px;
+      margin: 0 10px 0 5px;
+    }
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    color: #aaa;
+    font-size: 14px;
+    > div {
+      margin-bottom: 20px;
+    }
+    .pay {
+      > div {
+        height: 44px;
+        width: 150px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        line-height: 40px;
+        text-align: center;
+      }
+    }
+    .text {
+      width: 90%;
+      text-align: justify;
+      font-size: 12px;
+    }
+    .btn {
+      background: #d51807;
+      border-radius: 4px;
+      width: 90%;
+      text-align: center;
+      height: 38px;
+      line-height: 38px;
+      color: white;
+    }
+  }
+}

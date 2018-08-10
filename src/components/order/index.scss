@@ -50,11 +50,20 @@
           input {
             border: 1px solid #ccc;
             border-radius: 2px;
-            width: 40%;
+            width: 50%;
             box-sizing: border-box;
-            padding: 0 10px;
+            padding: 0 5px;
             color: #333;
             background: #f9f9f9;
+          }
+          select {
+            color: #333;
+            background: #f9f9f9;
+            box-sizing: border-box;
+            padding: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            width: 50%;
           }
           span {
             box-sizing: border-box;

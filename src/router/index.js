@@ -11,6 +11,13 @@ import Login from '../components/login';
 import Register from '../components/register';
 import Order from '../components/order';
 import Listen from '../components/listen'
+import Search from '../components/search'
+import Choice from '../components/choice'
+import Qr from '../components/qr'
+import Credit from '../components/credit'
+import CreditChild from '../components/credit/child'
+import Profile from '../components/profile'
+import Record from '../components/record'
 
 const routes = [
     {
@@ -40,7 +47,35 @@ const routes = [
             {
                 path: "/order",
                 component: Order
-            }
+            },
+            {
+                path: "/search",
+                component: Search
+            },
+            {
+                path: "/choice/:num",
+                component: Choice
+            },
+            {
+                path: "/qr/:url",
+                component: Qr
+            },
+            {
+                path: "/credit",
+                component: Credit
+            },
+            {
+                path: "/c/:name",
+                component: CreditChild
+            },
+            {
+                path: "/profile",
+                component: Profile
+            },
+            {
+                path: "/record",
+                component: Record
+            },
         ]
     },
 ];

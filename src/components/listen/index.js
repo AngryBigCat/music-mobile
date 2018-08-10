@@ -7,25 +7,35 @@ export default class Listen extends Component {
     state = {
         progressState: 0,
         durationTime: "0:00",
-        currentTime: "0:00"
+        currentTime: "0:00",
+        musicFilePath: '',
+        musicName: '',
+        timer: null,
+        durationFlag: false
     };
-    componentWillMount() {
-        let music = getMusic(37);
-    }
     componentDidMount() {
-        this.durationComputed();
-        this.currentTimeIncrement();
+        this.setMusic();
+    }
+    setMusic() {
+        let musicFilePath = "http://youbanquan.oss-cn-shanghai.aliyuncs.com/music/";
+        getMusic(this.props.match.params.id).then((res) => {
+            let musicName = res.data.music.name;
+            musicFilePath += res.data.music.filename;
+            this.setState({musicFilePath, musicName});
+        });
     }
     durationComputed() {
-        setTimeout(() => {
-            let durationTime = Math.floor(this.refs.audio.duration / 60) + ":" + Math.floor(this.refs.audio.duration % 60);
-            this.setState({
-                durationTime
-            });
-        }, 1000);
+        if (this.state.durationFlag) return;
+        let durationFlag = true;
+        let second =  Math.floor(this.refs.audio.duration % 60);
+        if (second < 10) {
+            second = "0" + second;
+        }
+        let durationTime = Math.floor(this.refs.audio.duration / 60) + ":" + second;
+        this.setState({ durationTime, durationFlag });
     }
-    currentTimeIncrement() {
-        setInterval(() => {
+    currentTimeIncrement = () => {
+        let timer = setInterval(() => {
             // 进度条
             let progressState = this.refs.audio.currentTime / this.refs.audio.duration * 100;
             // 当前播放时间
@@ -49,6 +59,13 @@ export default class Listen extends Component {
                 })
             }
         }, 1000);
+        this.clearCurrentTimeInterval();
+        this.setState({timer})
+    };
+    clearCurrentTimeInterval() {
+        if (this.state.timer) {
+            clearInterval(this.state.timer)
+        }
     }
     onChangeSlider = (v) => {
         this.refs.audio.currentTime = this.refs.audio.duration * v / 100;
@@ -59,26 +76,32 @@ export default class Listen extends Component {
             e.target.classList.add("fa-pause-circle-o");
             this.refs.disk.classList.remove("pause");
             this.refs.disk.classList.add("run");
-            this.refs.audio.play()
+            this.refs.audio.play();
+            this.currentTimeIncrement();
+            this.durationComputed();
         } else {
             e.target.classList.remove("fa-pause-circle-o");
             e.target.classList.add("fa-play-circle-o");
             this.refs.disk.classList.remove("run");
             this.refs.disk.classList.add("pause");
-            this.refs.audio.pause()
+            this.refs.audio.pause();
+            this.clearCurrentTimeInterval();
         }
     };
     onBackToPage = () => {
-        alert("返回");
+        this.clearCurrentTimeInterval();
+        this.refs.audio.pause();
+        this.props.history.goBack();
     };
     render() {
         return (
             <div className="listen">
-                <audio src="/test/bgm.mp3" ref="audio"/>
+                <audio src="/static/media/watermark.mp3" loop autoPlay ref="watermark" />
+                <audio src={ this.state.musicFilePath } ref="audio"/>
                 <div className="player">
                     <div className="header">
                         <i className="fa fa-chevron-left backBtn" onClick={ this.onBackToPage }/>
-                        <div className="title">巴西漫游</div>
+                        <div className="title">{ this.state.musicName }</div>
                     </div>
                     <div className="main">
                         <div className="disk pause" ref="disk">
