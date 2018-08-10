@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eecce4b9-ba68-4b88-9000-7f3b226d6ab0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/credit/attach.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/credit/classify.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/credit/flow.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/credit/legal.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpack.config.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack.config.prod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpackDevServer.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpackDevServer.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cart/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index/nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/nav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/listen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/listen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/listen/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/listen/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/order/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/order/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/register/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/register/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="eecce4b9-ba68-4b88-9000-7f3b226d6ab0" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -258,12 +234,12 @@
       <workItem from="1532503986116" duration="320000" />
       <workItem from="1532595151490" duration="210000" />
       <workItem from="1532684147323" duration="20000" />
-      <workItem from="1532938344815" duration="42478000" />
+      <workItem from="1532938344815" duration="43004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="330072000" />
+    <option name="totallyTimeSpent" value="330598000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
